@@ -11,35 +11,27 @@ public abstract class Creature {
     private String name;
 
     public Creature(int attack, int defence, int maxHP, int minDamage, int maxDamage, String name) {
-        if (attack < 1 || attack > 30) {
+        if (attack < 1 || attack > 30)
             throw new IllegalArgumentException("Attack cannot be less then 1 or more than 30.");
-        } else {
-            this.attack = attack;
-        }
 
-        if (defence < 1 || defence > 30) {
+        if (defence < 1 || defence > 30)
             throw new IllegalArgumentException("Defence cannot be less then 1 or more than 30.");
-        } else {
-            this.defence = defence;
-        }
 
-        if (maxHP < 1) {
+        if (maxHP < 1)
             throw new IllegalArgumentException("Hit points cannot be less then 1.");
-        } else {
-            this.maxHP = maxHP;
-            currentHP = maxHP;
-        }
 
-        if (minDamage > maxDamage) {
+        if (minDamage > maxDamage)
             throw new IllegalArgumentException("MinDamage cannot be more then maxDamage.");
-        }
-        else if (minDamage < 1) {
-            throw new IllegalArgumentException("Damage cannot be less then 1.");
-        } else {
-            this.minDamage = minDamage;
-            this.maxDamage = maxDamage;
-        }
 
+        if (minDamage < 1)
+            throw new IllegalArgumentException("Damage cannot be less then 1.");
+
+        this.defence = defence;
+        this.maxHP = maxHP;
+        currentHP = maxHP;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
+        this.attack = attack;
         this.name = name;
         alive = true;
     }
@@ -58,6 +50,9 @@ public abstract class Creature {
     }
 
     public void setAttack(int attack) {
+        if (attack < 1 || attack > 30)
+            throw new IllegalArgumentException("Attack cannot be less then 1 or more than 30.");
+
         this.attack = attack;
     }
 
@@ -66,6 +61,9 @@ public abstract class Creature {
     }
 
     public void setDefence(int defence) {
+        if (defence < 1 || defence > 30)
+            throw new IllegalArgumentException("Defence cannot be less then 1 or more than 30.");
+
         this.defence = defence;
     }
 
@@ -74,6 +72,9 @@ public abstract class Creature {
     }
 
     public void setMaxHP(int maxHP) {
+        if (maxHP < 1)
+            throw new IllegalArgumentException("Hit points cannot be less then 1.");
+
         this.maxHP = maxHP;
     }
 
@@ -90,6 +91,12 @@ public abstract class Creature {
     }
 
     public void setMinDamage(int minDamage) {
+        if (minDamage > maxDamage)
+            throw new IllegalArgumentException("MinDamage cannot be more then maxDamage.");
+
+        if (minDamage < 1)
+            throw new IllegalArgumentException("Damage cannot be less then 1.");
+
         this.minDamage = minDamage;
     }
 
@@ -98,6 +105,8 @@ public abstract class Creature {
     }
 
     public void setMaxDamage(int maxDamage) {
+        if (minDamage > maxDamage)
+            throw new IllegalArgumentException("MinDamage cannot be more then maxDamage.");
         this.maxDamage = maxDamage;
     }
 
